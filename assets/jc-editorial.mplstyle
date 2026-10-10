@@ -1,8 +1,8 @@
-# jc-editorial.mplstyle · marca JC. v1.1 · gráficos editoriales sobre blanco
+# jc-editorial.mplstyle · marca JC. v2.1 · gráficos editoriales sobre blanco
 figure.facecolor: FFFFFF
 axes.facecolor: FFFFFF
 savefig.facecolor: FFFFFF
-axes.edgecolor: 4B463E
+axes.edgecolor: 636975
 axes.linewidth: 0.8
 axes.spines.top: False
 axes.spines.right: False
@@ -11,22 +11,22 @@ axes.spines.bottom: True
 axes.grid: True
 axes.grid.axis: y
 axes.axisbelow: True
-grid.color: 1F1B16
-grid.alpha: 0.12
+grid.color: C8CBCF
+grid.alpha: 1.0
 grid.linewidth: 0.6
-axes.prop_cycle: cycler('color', ['2B3A2A', '6B7553', '8B9472', '4B463E'])
+axes.prop_cycle: cycler('color', ['0F1F45', '2A5CDA', '7379B4', '00B4A4'])
 font.family: sans-serif
 font.sans-serif: Geist, Arial, Liberation Sans, DejaVu Sans
 font.size: 12
-text.color: 1F1B16
-axes.labelcolor: 4B463E
+text.color: 141822
+axes.labelcolor: 636975
 axes.labelsize: 11
 axes.titlelocation: left
 axes.titlesize: 16
 axes.titleweight: semibold
 axes.titlepad: 16
-xtick.color: 4B463E
-ytick.color: 4B463E
+xtick.color: 636975
+ytick.color: 636975
 xtick.labelsize: 11
 ytick.labelsize: 11
 xtick.major.size: 0

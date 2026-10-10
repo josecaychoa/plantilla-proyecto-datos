@@ -85,7 +85,7 @@ Acta: docs/01_acta.md · Plan: docs/02_edt_gantt.md · Datos: docs/03_diccionari
 - SQL Oracle-first en sql/oracle/; variante T-SQL en sql/sqlserver/ si aplica.
 - Scripts SQL idempotentes, numerados (01_, 02_ ...) y con variables enlazadas.
 - data/raw es inmutable; las transformaciones escriben en data/interim y data/processed.
-- Gráficos con assets/jc-editorial.mplstyle: hallazgo en #B0593A, contexto en #C0BEBB.
+- Gráficos con assets/jc-editorial.mplstyle: hallazgo en #2A5CDA, contexto en #C8CBCF.
 - Antes de publicar texto: skill revision-anti-estilo-ia (scripts/lint_texto.py).
 
 ## Git
