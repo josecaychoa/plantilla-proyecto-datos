@@ -89,8 +89,10 @@ Acta: docs/01_acta.md · Plan: docs/02_edt_gantt.md · Datos: docs/03_diccionari
 - Antes de publicar texto: skill revision-anti-estilo-ia (scripts/lint_texto.py).
 
 ## Git
-- Rama por issue: <tipo>/<n>-<descripcion-corta> (feat, fix, docs, data, chore).
-- Commits: <tipo>: <descripción en español> (#<n>). El PR incluye "Closes #<n>".
+- Rama por issue: <tipo>/<n>-<descripcion-corta> (feat, fix, docs, data, test, refactor, ci, chore).
+- Commits (Conventional Commits 1.0.0): <tipo>(<ámbito opcional>): <descripción en español>,
+  en minúscula y sin punto final; pie Refs #<n>.
+- Los cambios entran a main solo por PR; el PR incluye "Closes #<n>".
 """,
         "CHANGELOG.md": "# Changelog\n\n## [Sin publicar]\n- Estructura inicial del repositorio.\n",
         "LICENSE": f"""MIT License
