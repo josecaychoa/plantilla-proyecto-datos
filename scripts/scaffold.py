@@ -16,6 +16,9 @@ CARPETAS = [
     "data/processed",
     "data/external",
     "docs",
+    "docs/diagramas",
+    "docs/procesos",
+    "gestion/cronograma",
     "notebooks",
     "sql/oracle",
     "sql/sqlserver",
@@ -44,6 +47,15 @@ def archivos(nombre, modulo, pf, titulo, anio):
 | Fuente | Documento o serie | Fecha de corte | Condiciones de uso |
 |---|---|---|---|
 ## Método
+<!-- Arquitectura (Visio): docs/diagramas/ · Proceso (Bizagi): docs/procesos/ -->
+<!-- Cronograma (Project): gestion/cronograma/ · cada SVG con "Elaboración propia" -->
+## Gestión del proyecto
+| Elemento | Archivo |
+|---|---|
+| Acta y objetivos SMART | `docs/01_acta.md` |
+| EDT y Gantt (vista resumida de la línea base) | `docs/02_edt_gantt.md` |
+| Cronograma con línea base y seguimiento (Microsoft Project) | `gestion/cronograma/` |
+| Cierre, desvíos y lecciones | `docs/05_cierre_lecciones.md` |
 ## Resultados
 ## Cómo reproducir
 ```bash
@@ -53,8 +65,8 @@ uv sync --locked
 uv run pytest
 ```
 ## Limitaciones
-- Este análisis tiene fines demostrativos y no constituye asesoría regulatoria,
-  actuarial ni financiera.
+- Este análisis tiene fines demostrativos y no constituye asesoría regulatoria, actuarial
+  ni financiera.
 ## Licencia
 Código bajo licencia MIT. Los datos conservan las condiciones de uso de su fuente original.
 ## Autor
@@ -66,6 +78,9 @@ linkedin.com/in/jcaychoasin · github.com/josecaychoa
 ## Contexto
 Proyecto de portafolio personal de analítica de datos (seguros y finanzas del Perú).
 Acta: docs/01_acta.md · Plan: docs/02_edt_gantt.md · Datos: docs/03_diccionario_datos.md
+Cronograma (Project): gestion/cronograma/ · Diagramas (Visio): docs/diagramas/
+Procesos (Bizagi): docs/procesos/ · Los .mpp, .vsdx y .bpm los edita José en Windows;
+Claude Code no los modifica ni los regenera.
 
 ## Reglas obligatorias
 - Usar solo datos públicos o sintéticos. Nunca datos personales reales ni información
@@ -196,7 +211,11 @@ jobs:
             "| Fecha de descarga | Condiciones de uso |\n|---|---|---|---|---|---|---|\n"
         ),
         "docs/01_acta.md": f"# Acta de constitución · {pf}: {titulo}\n\n(Plantilla 03a)\n",
-        "docs/02_edt_gantt.md": f"# EDT y Gantt · {pf}\n\n(Plantillas 03b y 03c)\n",
+        "docs/02_edt_gantt.md": (
+            f"# EDT y Gantt · {pf}\n\n(Plantillas 03b y 03c)\n\n"
+            "La línea base formal es la Baseline del cronograma de Microsoft Project en "
+            "`gestion/cronograma/`. El Gantt de este archivo es su vista resumida.\n"
+        ),
         "docs/03_diccionario_datos.md": f"# Diccionario de datos · {pf}\n",
         "docs/04_arquitectura.md": f"# Arquitectura · {pf}\n",
         "docs/05_cierre_lecciones.md": f"# Cierre · {pf}\n\n(Plantilla 03e)\n",
@@ -222,8 +241,6 @@ def main():
     modulo = nombre.replace("-", "_")
     for c in CARPETAS:
         (raiz / c).mkdir(parents=True, exist_ok=True)
-        if c.startswith("data/"):
-            (raiz / c / ".gitkeep").touch()
     creados, omitidos = 0, 0
     for ruta, texto in archivos(nombre, modulo, a.pf, a.titulo, date.today().year).items():
         destino = raiz / ruta
@@ -233,6 +250,10 @@ def main():
             continue
         destino.write_text(texto, encoding="utf-8", newline="\n")
         creados += 1
+    for c in CARPETAS:
+        # .gitkeep solo en las carpetas que quedaron vacías, para que Git las conserve
+        if not any((raiz / c).iterdir()):
+            (raiz / c / ".gitkeep").touch()
     print(f"{nombre}: {creados} archivos creados, {omitidos} omitidos (ya existían).")
     print("Siguiente: copiar assets/jc-editorial.mplstyle, scripts/verificar_pdf.py y")
     print("scripts/lint_texto.py desde sus skills; luego uv lock && uv sync.")

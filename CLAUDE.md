@@ -3,6 +3,9 @@
 ## Contexto
 Proyecto de portafolio personal de analítica de datos (seguros y finanzas del Perú).
 Acta: docs/01_acta.md · Plan: docs/02_edt_gantt.md · Datos: docs/03_diccionario_datos.md
+Cronograma (Project): gestion/cronograma/ · Diagramas (Visio): docs/diagramas/
+Procesos (Bizagi): docs/procesos/ · Los .mpp, .vsdx y .bpm los edita José en Windows;
+Claude Code no los modifica ni los regenera.
 
 ## Reglas obligatorias
 - Usar solo datos públicos o sintéticos. Nunca datos personales reales ni información

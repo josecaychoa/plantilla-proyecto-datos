@@ -9,6 +9,15 @@
 | Fuente | Documento o serie | Fecha de corte | Condiciones de uso |
 |---|---|---|---|
 ## Método
+<!-- Arquitectura (Visio): docs/diagramas/ · Proceso (Bizagi): docs/procesos/ -->
+<!-- Cronograma (Project): gestion/cronograma/ · cada SVG con "Elaboración propia" -->
+## Gestión del proyecto
+| Elemento | Archivo |
+|---|---|
+| Acta y objetivos SMART | `docs/01_acta.md` |
+| EDT y Gantt (vista resumida de la línea base) | `docs/02_edt_gantt.md` |
+| Cronograma con línea base y seguimiento (Microsoft Project) | `gestion/cronograma/` |
+| Cierre, desvíos y lecciones | `docs/05_cierre_lecciones.md` |
 ## Resultados
 ## Cómo reproducir
 ```bash
