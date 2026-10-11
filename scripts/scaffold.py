@@ -174,6 +174,9 @@ data/external/*
 !data/**/.gitkeep
 .ipynb_checkpoints/
 *.pbix
+# Power BI (PBIP): archivos locales que no se versionan
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
 """,
         ".env.example": "ORACLE_USER=\nORACLE_PASSWORD=\nORACLE_DSN=localhost:1521/<servicio>\n",
         ".pre-commit-config.yaml": """repos:
