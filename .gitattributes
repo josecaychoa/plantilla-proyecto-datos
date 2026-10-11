@@ -1,0 +1,5 @@
+# Finales de línea LF en los archivos de texto que escribe el código
+# (manifiestos CSV e informes). Sin esta regla, Git en Windows (core.autocrlf=true)
+# los extrae con CRLF y el árbol queda modificado después de cada ejecución.
+*.csv text eol=lf
+reports/*.md text eol=lf

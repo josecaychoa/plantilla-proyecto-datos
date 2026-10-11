@@ -205,8 +205,20 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest
 """,
+        ".gitattributes": (
+            "# Finales de línea LF en los archivos de texto que escribe el código\n"
+            "# (manifiestos CSV e informes). Sin esta regla, Git en Windows (core.autocrlf=true)\n"
+            "# los extrae con CRLF y el árbol queda modificado después de cada ejecución.\n"
+            "*.csv text eol=lf\nreports/*.md text eol=lf\n"
+        ),
         ".github/pull_request_template.md": (
-            "## Resumen\n\n## Evidencia\n- [ ] ruff y pytest en verde\n"
+            "## Resumen\n\n**Prueba local antes del merge:** sí / no\n"
+            "<!-- Sí: el PR cambia código o datos; adjuntar la tabla de la prueba en Windows "
+            "(Claude Code). -->\n"
+            "<!-- No: el PR solo cambia documentos o el cronograma; revisar el contenido en "
+            "GitHub. -->\n\n"
+            "## Evidencia\n- [ ] ruff y pytest en verde\n"
+            "- [ ] Prueba local en Windows (si aplica): resultado esperado frente a obtenido\n"
             "- [ ] Cifras nuevas con su cita APA 7 y ortografía RAE\n\nCloses #\n"
         ),
         ".github/ISSUE_TEMPLATE/tarea.md": (
