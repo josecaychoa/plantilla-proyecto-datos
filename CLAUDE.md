@@ -10,8 +10,10 @@ Claude Code no los modifica ni los regenera.
 ## Reglas obligatorias
 - Usar solo datos públicos o sintéticos. Nunca datos personales reales ni información
   confidencial de empleadores, clientes o terceros.
-- Toda cifra, tabla o gráfico que se publique lleva su fuente:
-  "Fuente: <entidad>, <documento>, <fecha de corte>" o "Elaboración propia ...".
+- Citas, tablas, figuras y referencias en APA 7 (en español): (SBS, 2026) en el texto,
+  "Nota. Elaboración propia con datos de SBS (2026)." bajo cada figura o tabla y
+  sección "Referencias" al final de README e informes.
+- Ortografía RAE: tildes, punto decimal, millares con espacio, "12.5 %" y "N.º".
 - Ninguna credencial en el código: usar variables de entorno (.env, fuera de Git).
 - No hacer merge, release ni push a main: abrir un PR y esperar la revisión de José.
 

@@ -10,7 +10,7 @@
 |---|---|---|---|
 ## Método
 <!-- Arquitectura (Visio): docs/diagramas/ · Proceso (Bizagi): docs/procesos/ -->
-<!-- Cronograma (Project): gestion/cronograma/ · cada SVG con "Elaboración propia" -->
+<!-- Cronograma (Project): gestion/cronograma/ · cada SVG como figura APA con «Nota.» -->
 ## Gestión del proyecto
 | Elemento | Archivo |
 |---|---|
@@ -29,6 +29,8 @@ uv run pytest
 ## Limitaciones
 - Este análisis tiene fines demostrativos y no constituye asesoría regulatoria,
   actuarial ni financiera.
+## Referencias
+<!-- Lista APA 7 en orden alfabético; un párrafo por referencia -->
 ## Licencia
 Código bajo licencia MIT. Los datos conservan las condiciones de uso de su fuente original.
 ## Autor

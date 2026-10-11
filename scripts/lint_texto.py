@@ -83,7 +83,29 @@ REGLAS = [
         ),
         "Nombrar la fuente concreta o eliminar",
     ),
+    # Sección G: ortografía RAE y citas APA 7 (guía 13 del Contexto)
+    ("Abreviatura con signo de grado", r"\b[Nn]\.?\s?°", "Escribir N.º (indicador ordinal)"),
+    ("Porcentaje sin espacio", r"\d%", "Escribir 12.5 % (con espacio)"),
+    (
+        "Millares con coma o punto",
+        r"\b\d{1,3}(?:,\d{3})+\b|\b\d{1,3}(?:\.\d{3}){2,}\b",
+        "Separar millares con espacio; el punto es solo decimal",
+    ),
+    ("Coma decimal", r"\b\d+,\d{1,2}\s?%", "Usar punto decimal (decisión del portafolio)"),
+    (
+        "Tilde que la RAE ya no usa",
+        r"\b(?:sólo|éste|ésta|éstos|éstas|ése|ésa|ésos|ésas|aquél|aquélla)\b",
+        "Escribir sin tilde",
+    ),
+    ("Cita en formato anterior", r"\bFuente:\s", "Usar APA 7: (SBS, 2026) y «Nota.» bajo figuras"),
+    (
+        "Referencia en APA 6",
+        r"(?i)\brecuperado de\s+https?://|\bretrieved from\b",
+        "APA 7: URL directa o «Recuperado el <fecha>, de URL»",
+    ),
 ]
+
+CITA = r"\([^()\n]*\b(?:19|20)\d{2}[a-z]?\)|\bs\. f\.|\bNota\.|Elaboración propia"
 
 
 def tríadas(linea):
@@ -106,10 +128,12 @@ def main(ruta):
                 hallazgos.append((n, cat, m.group(0).strip()[:60], ayuda))
         if tríadas(linea) >= 2:
             hallazgos.append((n, "Tríadas en serie", linea.strip()[:60], "Variar la estructura"))
-    if re.search(r"\d+(?:[.,]\d+)?\s?%|\bS/\s?\d", texto) and not re.search(
-        r"Fuente|Elaboración propia", texto
+    if re.search(r"\d+(?:[.,]\d+)?\s?%|\bS/\s?\d", texto) and not re.search(CITA, texto):
+        hallazgos.append((0, "Cifra sin cita", "—", "Agregar la cita APA 7 (regla 3.3)"))
+    if re.search(CITA, texto) and not re.search(
+        r"(?m)^#*\s*Referencias\b|Referencias completas", texto
     ):
-        hallazgos.append((0, "Cifra sin fuente", "—", "Agregar la línea de fuente (regla 3.3)"))
+        hallazgos.append((0, "Sin referencias", "—", "Agregar la sección «Referencias» (APA 7)"))
     for n, cat, frag, ayuda in hallazgos:
         print(f"L{n:>3} · {cat}: «{frag}» → {ayuda}")
     por_cat = {}
