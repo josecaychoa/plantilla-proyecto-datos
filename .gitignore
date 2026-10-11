@@ -10,3 +10,6 @@ data/external/*
 !data/**/.gitkeep
 .ipynb_checkpoints/
 *.pbix
+# Power BI (PBIP): archivos locales que no se versionan
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
