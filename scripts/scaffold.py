@@ -48,7 +48,7 @@ def archivos(nombre, modulo, pf, titulo, anio):
 |---|---|---|---|
 ## Método
 <!-- Arquitectura (Visio): docs/diagramas/ · Proceso (Bizagi): docs/procesos/ -->
-<!-- Cronograma (Project): gestion/cronograma/ · cada SVG con "Elaboración propia" -->
+<!-- Cronograma (Project): gestion/cronograma/ · cada SVG como figura APA con «Nota.» -->
 ## Gestión del proyecto
 | Elemento | Archivo |
 |---|---|
@@ -67,6 +67,8 @@ uv run pytest
 ## Limitaciones
 - Este análisis tiene fines demostrativos y no constituye asesoría regulatoria, actuarial
   ni financiera.
+## Referencias
+<!-- Lista APA 7 en orden alfabético; un párrafo por referencia (13_guia_apa_rae.md) -->
 ## Licencia
 Código bajo licencia MIT. Los datos conservan las condiciones de uso de su fuente original.
 ## Autor
@@ -85,8 +87,10 @@ Claude Code no los modifica ni los regenera.
 ## Reglas obligatorias
 - Usar solo datos públicos o sintéticos. Nunca datos personales reales ni información
   confidencial de empleadores, clientes o terceros.
-- Toda cifra, tabla o gráfico que se publique lleva su fuente:
-  "Fuente: <entidad>, <documento>, <fecha de corte>" o "Elaboración propia ...".
+- Citas, tablas, figuras y referencias en APA 7 (en español): (SBS, 2026) en el texto,
+  "Nota. Elaboración propia con datos de SBS (2026)." bajo cada figura o tabla y
+  sección "Referencias" al final de README e informes.
+- Ortografía RAE: tildes, punto decimal, millares con espacio, "12.5 %" y "N.º".
 - Ninguna credencial en el código: usar variables de entorno (.env, fuera de Git).
 - No hacer merge, release ni push a main: abrir un PR y esperar la revisión de José.
 
@@ -200,7 +204,7 @@ jobs:
 """,
         ".github/pull_request_template.md": (
             "## Resumen\n\n## Evidencia\n- [ ] ruff y pytest en verde\n"
-            "- [ ] Cifras nuevas con su fuente\n\nCloses #\n"
+            "- [ ] Cifras nuevas con su cita APA 7 y ortografía RAE\n\nCloses #\n"
         ),
         ".github/ISSUE_TEMPLATE/tarea.md": (
             "---\nname: Tarea de la EDT\nabout: Paquete de trabajo del proyecto\n---\n\n"

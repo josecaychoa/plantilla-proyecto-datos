@@ -56,6 +56,7 @@ def main(ruta):
     if not ARCHIVO_PRIVADO.exists():
         avisos.append(f"No existe la lista privada {ARCHIVO_PRIVADO}: solo se revisó la etiqueta")
     n = len(reader.pages)
+    tiene_referencias = False
     mb = p.stat().st_size / 1_048_576
     # Límites oficiales de LinkedIn: 100 MB y 300 páginas; criterio editorial: 8 a 12 páginas
     if mb >= 100 or n > 300:
@@ -71,8 +72,14 @@ def main(ruta):
             if re.search(patron, texto, re.IGNORECASE):
                 errores.append(f"Página {i}: contiene un término prohibido de la lista")
         tiene_cifra = re.search(r"\d", texto) is not None
-        if 1 < i < n and tiene_cifra and not re.search(r"Fuente|Elaboración propia", texto):
-            avisos.append(f"Página {i}: tiene cifras pero no línea de fuente")
+        if 1 < i < n and tiene_cifra and not re.search(r"Nota\.|Elaboración propia", texto):
+            avisos.append(f"Página {i}: tiene cifras pero no nota APA 7")
+        if re.search(r"\b[Nn]\.?\s?°|\d%|\b\d{1,3}(?:,\d{3})+\b", texto):
+            avisos.append(f"Página {i}: revisar «N.º», porcentajes y millares (RAE)")
+        if re.search(r"(?m)^\s*Referencias\s*$", texto):
+            tiene_referencias = True
+    if not tiene_referencias:
+        avisos.append("No se encontró la página «Referencias» (APA 7)")
     faltan = fuentes_sin_incrustar(reader)
     if faltan:
         errores.append("Fuentes sin incrustar: " + ", ".join(faltan))
