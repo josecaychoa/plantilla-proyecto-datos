@@ -13,3 +13,5 @@ data/external/*
 # Power BI (PBIP): archivos locales que no se versionan
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+# Bóveda de atestaciones que crearía un hook de commits (mypowers); no se versiona
+vault/

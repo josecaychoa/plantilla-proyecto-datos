@@ -34,5 +34,5 @@ uv run pytest
 ## Licencia
 Código bajo licencia MIT. Los datos conservan las condiciones de uso de su fuente original.
 ## Autor
-José Caycho A. · Business Analyst Senior · Procesos · Datos
+José Caycho A. · Business Analyst Senior y DBA · Procesos · Datos
 linkedin.com/in/jcaychoasin · github.com/josecaychoa

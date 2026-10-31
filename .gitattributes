@@ -3,3 +3,15 @@
 # los extrae con CRLF y el árbol queda modificado después de cada ejecución.
 *.csv text eol=lf
 reports/*.md text eol=lf
+
+# Exportación XML de Microsoft Project: normalizada a LF. Project la exporta con
+# CRLF en Windows y, si el commit se hace desde un entorno sin autocrlf (p. ej.,
+# la sesión de Claude en Linux), el blob quedaría con CRLF y el árbol de Windows
+# aparecería modificado tras cada checkout (lección L-PF01-83).
+gestion/cronograma/*.xml text eol=lf
+
+# Exportaciones de Bizagi (CRLF) y figuras con Content Credentials en
+# docs/procesos/: se versionan tal como se verificaron, sin conversión
+# de finales de línea.
+docs/procesos/*.svg -text
+docs/procesos/*.bpmn -text
