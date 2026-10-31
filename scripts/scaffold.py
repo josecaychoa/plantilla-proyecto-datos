@@ -72,7 +72,7 @@ uv run pytest
 ## Licencia
 Código bajo licencia MIT. Los datos conservan las condiciones de uso de su fuente original.
 ## Autor
-José Caycho A. · Business Analyst Senior · Procesos · Datos
+José Caycho A. · Business Analyst Senior y DBA · Procesos · Datos
 linkedin.com/in/jcaychoasin · github.com/josecaychoa
 """,
         "CLAUDE.md": f"""# CLAUDE.md · {pf} {titulo}
@@ -100,7 +100,8 @@ Claude Code no los modifica ni los regenera.
 - Pruebas: `uv run pytest` · Oracle: `docker compose up -d` (python-oracledb, modo Thin).
 
 ## Convenciones
-- Nombres en inglés técnico; comentarios y docstrings en español.
+- Nombres en español, snake_case, también en Python (identificadores, funciones y módulos);
+  comentarios y docstrings en español.
 - SQL Oracle-first en sql/oracle/; variante T-SQL en sql/sqlserver/ si aplica.
 - Scripts SQL idempotentes, numerados (01_, 02_ ...) y con variables enlazadas.
 - data/raw es inmutable; las transformaciones escriben en data/interim y data/processed.
@@ -111,7 +112,9 @@ Claude Code no los modifica ni los regenera.
 - Rama por issue: <tipo>/<n>-<descripcion-corta> (feat, fix, docs, data, test, refactor, ci, chore).
 - Commits (Conventional Commits 1.0.0): <tipo>(<ámbito opcional>): <descripción en español>,
   en minúscula y sin punto final; pie Refs #<n>.
-- Los cambios entran a main solo por PR; el PR incluye "Closes #<n>".
+- Los cambios entran a main solo por PR.
+- "Closes #<n>" solo si el PR cumple todo el criterio de aceptación del issue;
+  si es parcial, "Refs #<n>".
 """,
         "CHANGELOG.md": "# Changelog\n\n## [Sin publicar]\n- Estructura inicial del repositorio.\n",
         "LICENSE": f"""MIT License
@@ -177,6 +180,8 @@ data/external/*
 # Power BI (PBIP): archivos locales que no se versionan
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+# Bóveda de atestaciones que crearía un hook de commits (mypowers); no se versiona
+vault/
 """,
         ".env.example": "ORACLE_USER=\nORACLE_PASSWORD=\nORACLE_DSN=localhost:1521/<servicio>\n",
         ".pre-commit-config.yaml": """repos:
@@ -209,7 +214,16 @@ jobs:
             "# Finales de línea LF en los archivos de texto que escribe el código\n"
             "# (manifiestos CSV e informes). Sin esta regla, Git en Windows (core.autocrlf=true)\n"
             "# los extrae con CRLF y el árbol queda modificado después de cada ejecución.\n"
-            "*.csv text eol=lf\nreports/*.md text eol=lf\n"
+            "*.csv text eol=lf\nreports/*.md text eol=lf\n\n"
+            "# Exportación XML de Microsoft Project: normalizada a LF. Project la exporta con\n"
+            "# CRLF en Windows y, si el commit se hace desde un entorno sin autocrlf (p. ej.,\n"
+            "# la sesión de Claude en Linux), el blob quedaría con CRLF y el árbol de Windows\n"
+            "# aparecería modificado tras cada checkout (lección L-PF01-83).\n"
+            "gestion/cronograma/*.xml text eol=lf\n\n"
+            "# Exportaciones de Bizagi (CRLF) y figuras con Content Credentials en\n"
+            "# docs/procesos/: se versionan tal como se verificaron, sin conversión\n"
+            "# de finales de línea.\n"
+            "docs/procesos/*.svg -text\ndocs/procesos/*.bpmn -text\n"
         ),
         ".github/pull_request_template.md": (
             "## Resumen\n\n**Prueba local antes del merge:** sí / no\n"
@@ -219,7 +233,10 @@ jobs:
             "GitHub. -->\n\n"
             "## Evidencia\n- [ ] ruff y pytest en verde\n"
             "- [ ] Prueba local en Windows (si aplica): resultado esperado frente a obtenido\n"
-            "- [ ] Cifras nuevas con su cita APA 7 y ortografía RAE\n\nCloses #\n"
+            "- [ ] Cifras nuevas con su cita APA 7 y ortografía RAE\n\n"
+            "<!-- Closes #n solo si el PR cumple todo el criterio de aceptación; "
+            "si es parcial, Refs #n. -->\n"
+            "Closes #\n"
         ),
         ".github/ISSUE_TEMPLATE/tarea.md": (
             "---\nname: Tarea de la EDT\nabout: Paquete de trabajo del proyecto\n---\n\n"
